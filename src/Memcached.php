@@ -21,9 +21,6 @@
  *
  */
 
-namespace Xenzilla;
-
-
 class Memcached
 {
     // Options
@@ -327,7 +324,20 @@ class Memcached
      */
     public function addServers($servers)
     {
-        $this->servers = array_merge($this->servers, $servers);
+		$tmp = array();
+		foreach ($servers as $server) {
+			if (isset($server['host'])) {
+				$tmp[] = $server;
+			} else {
+				$tmp[] = array(
+					'host' => $server[0],
+					'port' => $server[1],
+					'weight' => $server[2],
+				);
+			}
+		}
+
+        $this->servers = array_merge($this->servers, $tmp);
         usort($this->servers, array($this, 'compareWeight'));
 
         return TRUE;

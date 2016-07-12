@@ -1,4 +1,11 @@
-xenzilla/memcached
+memcached
 =========
 
 An all-PHP implementation of the PECL memcached extension
+
+fork from https://github.com/mastacheata/memcached
+
+change api to memcached the same.
+
+用来在本地没有装安memcached扩展时无缝替换用。
+
