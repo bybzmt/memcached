@@ -63,7 +63,26 @@ class Memcached
 
     // Result codes
     const RES_SUCCESS = 0;
-    const RES_NOTFOUND = 1;
+    const RES_FAILURE = 1;
+	const RES_HOST_LOOKUP_FAILURE = 2;
+	const RES_UNKNOWN_READ_FAILURE = 7;
+	const RES_PROTOCOL_ERROR = 8;
+	const RES_CLIENT_ERROR = 9;
+	const RES_SERVER_ERROR = 10;
+	const RES_WRITE_FAILURE = 5;
+	const RES_DATA_EXISTS = 12;
+	const RES_NOTSTORED = 14;
+    const RES_NOTFOUND = 16;
+	const RES_PARTIAL_READ = 18;
+	const RES_SOME_ERRORS = 19;
+	const RES_NO_SERVERS = 20;
+	const RES_END = 21;
+	const RES_ERRNO = 26;
+	const RES_BUFFERED = 32;
+	const RES_TIMEOUT = 31;
+	const RES_BAD_KEY_PROVIDED = 33;
+	const RES_CONNECTION_SOCKET_CREATE_FAILURE = 11;
+	const RES_PAYLOAD_FAILURE = -1001;
 
     // Value Type Flags
     const MEMC_VAL_TYPE_MASK = 0xf;
