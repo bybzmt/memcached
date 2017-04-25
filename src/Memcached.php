@@ -451,8 +451,6 @@ class Memcached
      */
     protected function shift($key, $offset, $initial_value, $expiry)
     {
-        $initial_value = 0;
-
         $opcode = 0x05;
         if ($offset < 0)
         {
@@ -473,7 +471,7 @@ class Memcached
         $this->responseStatus = $data['status'];
         if ($this->responseStatus == 0)
         {
-            return TRUE;
+			return unpack('J', $data['body'])[1];
         }
 
         return FALSE;
@@ -484,6 +482,9 @@ class Memcached
      */
     public function decrement($key, $offset = 1, $initial_value = 0, $expiry = 0)
     {
+		if ($offset < 0) {
+			throw new \LogicException("Memcached::decrement(): offset cannot be a negative value");
+		}
         return $this->shift($key, $offset*-1, $initial_value, $expiry);
     }
 
@@ -878,6 +879,9 @@ class Memcached
      */
     public function increment($key, $offset = 1, $initial_value = 0, $expiry = 0)
     {
+		if ($offset < 0) {
+			throw new \LogicException("Memcached::increment(): offset cannot be a negative value");
+		}
         return $this->shift($key, $offset, $initial_value, $expiry);
     }
 
