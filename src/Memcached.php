@@ -780,7 +780,7 @@ class Memcached
             $result = $this->get($key, null, $token);
             if ($result !== FALSE)
             {
-                $reults[$key] = $result;
+                $results[$key] = $result;
                 $tokens[$key] = $token;
             }
         }
@@ -790,7 +790,7 @@ class Memcached
             $cas_tokens = $tokens;
         }
 
-        return empty($results) ? FALSE : $results;
+        return $results;
     }
 
     /**
